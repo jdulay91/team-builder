@@ -1,68 +1,54 @@
-import React from 'react';
-
-//
-
+import React from 'react'
 
 export default function Form(props) {
-    const { value, teamMates, setTeamMates, submit } = props
-    const onChange = e => {
-        setTeamMates({
-            ...teamMates,
-            [e.target.name]:e.target.value
-        })
+    const { values, update, submit } = props
 
+    const onChange = e => {
+       const{name,value} = e.target
+        update(name, value)
     }
 
     const onSubmit = e => {
         e.preventDefault()
         submit()
     }
-    
-
 
     return (
         <form onSubmit={onSubmit}>
-            <label  htmlFor='nameInput'> Gimme a Name
-                <input
-                    onChange={onChange}
-                    maxLength='10'
-                    placeholder='Nick Name is fine ya?'
-                    id='nameInput'
-                    name='name'
-                    type='text'
-                    value={value.name}
-                >
-                </input>
+            <h2>New Hire</h2>
+            <button disabled={!values.name || !values.email || !values.location}>submit</button>
+            <label htmlFor="nameInput"> Name
+                <input 
+                id='nameInput'
+                name='name'
+                type='text'
+                placeholder='Enter your name'
+                maxLength='20'
+                value={values.name}
+                onChange={onChange}
+                />
             </label>
-            <label htmlFor='emailInput'> And Your Email
+            <label htmlFor='emailInput'> Email
                 <input
-                    onChange={onChange}
-                    maxLength='20'
-                    placeholder='Email'
-                    id='emailInput'
-                    name='email'
-                    type='email'
-                    value={value.email}
-                >
-                </input>
+                id='emailInput'
+                name='email'
+                type='email'
+                placeholder='enter ur email'
+                maxLength='30'
+                value={values.email}
+                onChange={onChange}                
+                />
             </label>
-            <label htmlFor='locationInput'> Last where u at
+            <label htmlFor='locationInput'> Location
                 <input
-                    onChange={onChange}
-                    maxLength='2'
-                    placeholder='Enter State'
-                    id='locationInput'
-                    name='location'
-                    type='text'
-                    value={value.location}
-                >
-                </input>
+                id='locationInput'
+                name='location'
+                type='text'
+                placeholder='enter state'
+                maxLength='2'
+                value={values.location}
+                onChange={onChange} />
             </label>
-            <div>
-                <h2>Add Gold Member</h2>
-                <input type='submit'></input>
-            </div>
         </form>
-
     )
 }
