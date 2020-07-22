@@ -24,10 +24,6 @@ const fakeAxiosGet = () => {
   return Promise.resolve({ status: 200, success: true, data:initialTeamMateList })
 }
 
-const fakeAxiosPost = (url, { name, email, location }) => {
-  const newTeamMate = { id: uuid(), name, email, location }
-  return Promise.resolve({ status: 200, success: true, data: newTeamMate })
-}
 
 function App() {
 
@@ -39,7 +35,8 @@ function App() {
     setFormValues(updatedFormValues)
   }
 
-  const submitForm =() => {    
+  const submitForm =() => {
+    
     const newTeamMate = {
       name:formValues.name.trim(),
       email: formValues.email.trim(),
@@ -49,13 +46,7 @@ function App() {
     newTeamMates.push(newTeamMate)
     setTeamMates(newTeamMates)
     setFormValues(initialFormValues)
-    // if (!newTeamMate.username || !newTeamMate.email || !newTeamMate.role) return
-    // fakeAxiosPost('fakeapi.com',newTeamMate)
-    // .then(res=>{
-    //   const teamMateFromAPI = res.data      
-    //   setTeamMates([...teamMates].push(teamMateFromAPI))
-    //   setFormValues(initialFormValues)
-    // })
+
   }
 
   useEffect(() => {
