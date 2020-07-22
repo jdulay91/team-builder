@@ -39,8 +39,7 @@ function App() {
     setFormValues(updatedFormValues)
   }
 
-  const submitForm =() => {
-    debugger
+  const submitForm =() => {    
     const newTeamMate = {
       name:formValues.name.trim(),
       email: formValues.email.trim(),
